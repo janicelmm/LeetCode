@@ -2,17 +2,17 @@ public class Leetcode206ReviseLinkedList {
 	
 	public static ListNode reverseList(ListNode head) {
 		
-		if(head == null || head.next == null)
-		{
-			return head;
-		}
-		
-		ListNode newL = reverseList(head.next);
-		head.next.next = head;
-		head.next = null;
-		
-		return newL;
-
+        ListNode prev = null;
+        
+        while (head != null)
+        {
+            ListNode next_node = head.next;
+            head.next = prev;
+            prev = head;
+            head = next_node;
+        }
+        
+        return prev;
 	}
 		
 	public static void main(String[] args) {
