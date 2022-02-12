@@ -60,67 +60,66 @@ public class Leetcode994RottingOranges {
     	
     }
     
+    public static int[] dir = {0,1,0,-1,0};
+    
     public static int orangesRotting2(int[][] grid) {
-    	int freshOranges = 0;
-    	Queue<int[]> rottenPositions = new LinkedList<int[]>();
-    	Queue<int[]> newRot = new LinkedList<int[]>();
-    	int min = 0;
+    	int fresh = 0;
+    	Queue<int[]> rot = new LinkedList<>();
     	
     	for (int i = 0; i < grid.length; i++)
     	{
-    		for (int j = 0; j < grid[i].length; j++)
+    		for (int j = 0; j < grid[0].length; j++)
     		{
     			if (grid[i][j] == 2)
     			{
-    				rottenPositions.add(new int[] {i, j});
+    				rot.offer(new int[] {i, j, 0});
     			}
     			
     			if (grid[i][j] == 1)
     			{
-    				freshOranges++;
+    				fresh++;
     			}
     		}
     	}
-    	
-    	while (!rottenPositions.isEmpty())
+
+    	while (!rot.isEmpty())
     	{
-    		int[] currentPos = rottenPositions.poll();
-    		int i = currentPos[0];
-    		int j = currentPos[1];
-    		
-    		int[][] adjPositions = {{i+1, j}, {i-1, j}, {i, j+1}, {i, j-1}};
-    		
-    		for (int[] adjPos : adjPositions)
+    		int size = rot.size();
+    		for (int k = 0; k < size; k++)
     		{
-    			i = adjPos[0];
-    			j = adjPos[1];
-    			if (i >=0 && j >=0 && i <= grid.length - 1 && j <= grid[i].length - 1 && grid[i][j] == 1)
+    			int[] cur = rot.poll();
+    			
+    			
+    			for (int d = 0; d < dir.length - 1; d++)
     			{
-    				newRot.add(new int[]{i, j});
-    				grid[i][j] = 2;
-    				freshOranges--;
+    				int x = cur[0] + dir[d];
+    				int y = cur[1] + dir[d+1];
+    				int z = cur[2];
+    				
+    				
+    				if (x >=0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] == 1)
+    				{
+    					grid[x][y] = 2;
+    					rot.offer(new int[] {x,y, z+1});
+    					fresh--;
+    					
+    					if (fresh == 0)
+    					{
+    						return z+1;
+    					}
+    				}
     			}
     		}
-    		
-    		if (rottenPositions.isEmpty() && !newRot.isEmpty())
-    		{
-    			min++;
-    			rottenPositions = newRot;
-    			newRot = new LinkedList<int[]>();
-    		}
-     	}
-    	
-    	if(freshOranges == 0)
-    	{
-    		return min;
     	}
     	
     	return -1;
     }
+    
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println(orangesRotting2(new int[][]{{2,1,1},{1,1,0},{0,1,1}}));
 	}
-	//{2,1,1}, {0,1,1,}, {1,0,1}
+	//{2,1,1}, {0,1,1}, {1,0,1}
+	//{{2,1,1},{1,1,1},{0,1,2}}
 
 }
