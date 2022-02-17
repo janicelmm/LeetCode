@@ -36,6 +36,11 @@ public class Leetcode733FloodFill {
 	    Queue<int[]> flood = new LinkedList<>();
 	    flood.offer(new int[] {sr,sc});
 	    
+	    if (image[sr][sc] == newColor)
+	    {
+	    	return image;
+	    }
+	    
 	    while (!flood.isEmpty())
 	    {
 	        int[] cur = flood.poll();
