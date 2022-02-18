@@ -5,16 +5,16 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class Leetcode57InsertInterval {
-	public static int[][] insert(int[][] intervals, int[] newInterval) {
-		Comparator<Integer[]> com = (a, b) -> a[0].compareTo(b[0]);
-		Queue<Integer[]> sort = new PriorityQueue<Integer[]>(com);
-
+    public static int[][] insert(int[][] intervals, int[] newInterval) {
+        Comparator<Integer[]> com = (a, b) -> a[0].compareTo(b[0]);
+        Queue<Integer[]> sort = new PriorityQueue<Integer[]>(com);
+        
         for (int i = 0; i < intervals.length; i++)
         {
             Integer[] j = new Integer[2];
-			j[0] = intervals[i][0];
-			j[1]= intervals[i][1];
-			sort.offer(j);
+        	j[0] = intervals[i][0];
+        	j[1]= intervals[i][1];
+        	sort.offer(j);
         }
         
         Integer[] temp = new Integer[]{newInterval[0], newInterval[1]};
@@ -44,9 +44,9 @@ public class Leetcode57InsertInterval {
         return ans.toArray(new int[ans.size()][2]);
     }
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println(insert(new int[][] {{1,3}, {6,9}}, new int[] {2,5}));
-	}
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        System.out.println(insert(new int[][] {{1,3}, {6,9}}, new int[] {2,5}));
+    }
 
 }
