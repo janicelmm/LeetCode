@@ -1,7 +1,4 @@
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class leetcode435NonoverlappingIntervals {
     public static int eraseOverlapIntervals(int[][] intervals) {
@@ -32,7 +29,6 @@ public class leetcode435NonoverlappingIntervals {
         return count;
     }
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         System.out.println(eraseOverlapIntervals(new int[][] {{1,2},{2,3},{3,4},{1,3}}));
     }
 
