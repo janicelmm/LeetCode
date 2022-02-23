@@ -21,4 +21,5 @@ public class Leetcode452MinNumbersOfArraowToBurstBalloons {
     public static void main(String[] args) {
         System.out.println(findMinArrowShots(new int[][] {{10,16},{2,8},{1,6},{7,12}}));
     }
+
 }
