@@ -1,3 +1,6 @@
+/*
+ * Arrays, DP question. Need to keep track of the maximum so far, and compare the sum of maximum + value and value itself if case of negative numbers.
+ */
 
 public class Leetcode53 {
 	public static int maxSubArray(int[] nums) {
@@ -26,5 +29,4 @@ public class Leetcode53 {
     	//-2,-3,-1
 	
 	}
-
 }
