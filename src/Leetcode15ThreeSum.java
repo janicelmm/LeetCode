@@ -30,10 +30,11 @@ public class Leetcode15ThreeSum {
 	                {
                 		temp.add(nums[j]);
 	                }
-	                else 
+	                else
 	                {
 	                	List<Integer> templist = Arrays.asList(nums[i], nums[j], remain - nums[j]);
 	                	Collections.sort(templist);
+	                	
 	                	if (!temp2.contains(templist))
 	                	{
 	                		temp2.add(templist);
@@ -43,11 +44,14 @@ public class Leetcode15ThreeSum {
 	                }
                 }
             }
+            
             temp.clear();
             remain = 0;
         }
+        
         return result;
     }
+	
     public static List<List<Integer>> threeSum2(int[] nums) {
         Set<List<Integer>> res = new HashSet<List<Integer>>();
         Arrays.sort(nums);
@@ -80,13 +84,11 @@ public class Leetcode15ThreeSum {
                 }
             }
         }
-        return new ArrayList<>(res);
+        return new ArrayList<>(res);   
     }
-	
+    
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		System.out.println(threeSum2(new int[] {3,0,-2,-1,1,2}));
+        //[3,0,-2,-1,1,2]
 	}
-
 }
-//[3,0,-2,-1,1,2]
