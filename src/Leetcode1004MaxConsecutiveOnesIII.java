@@ -3,9 +3,8 @@ public class Leetcode1004MaxConsecutiveOnesIII {
     public static int longestOnes(int[] nums, int k) 
     {
         int j = 0;
-        int i = 0;
-
-        while (i < nums.length) 
+        
+        for (int i = 0; i < nums.length; i++) 
         {
             if (nums[i] == 0) 
             {
@@ -21,11 +20,9 @@ public class Leetcode1004MaxConsecutiveOnesIII {
                 
                 j++;
             }
-            
-            i++;
         }
 
-        return i - j;
+        return nums.length - j;
     }
 
     public static void main(String[] args) {
