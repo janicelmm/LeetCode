@@ -28,7 +28,7 @@ public class leetcode213HouseRobber2 {
             prevSum = sum2;
         }
         
-        return Math.max(sum, sum2);
+        return sum >= sum2 ? sum : sum2;
     }
     
 	public static void main(String[] args) {
