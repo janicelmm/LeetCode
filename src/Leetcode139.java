@@ -1,31 +1,29 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Leetcode139 {
     public static boolean wordBreak(String s, List<String> wordDict) {
                 
-        for (String a : wordDict)
+        Set<String> ss = new HashSet<>(wordDict);
+        
+        boolean[] temp = new boolean[s.length() + 1];
+        
+        temp[0] = true;
+        
+        for (int i = 1; i <= s.length(); i++)
         {
-            String segment = "";
-            
-            for (int i = 0; i < a.length(); i++)
+            for (int j = 0; j < i; j++)
             {
-                segment = segment + a.charAt(i);
-            }
-            
-            if (s.contains(segment))
-            {
-                s = s.split(segment).toString();
+                if (temp[j] && ss.contains(s.substring(j, i)))
+                {
+                    temp[i] = true;
+                    break;
+                }
             }
         }
         
-        if (s.length()== 0)
-        {
-            return true;
-        }
-        
-        return false;
+        return temp[s.length()];
     }
 
 	public static void main(String[] args) {
