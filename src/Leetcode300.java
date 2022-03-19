@@ -1,66 +1,32 @@
-import javax.xml.transform.sax.TemplatesHandler;
 
 public class Leetcode300 {
-	public static int lengthOfLIS(int[] nums) {
-	     
-        int max = 0;
-        int count = 1;
-        int min = -10000;
-        
-        for (int i = 0; i < nums.length-1; i++)
+    public static int lengthOfLIS(int[] nums) {
+
+        int max = 1;
+        int[] count = new int[nums.length];
+        count[0] = 1;
+
+        for (int i = 1; i < nums.length; i++) 
         {
-        	min = nums[i];
-        	
-            for (int j = 0; j < nums.length -1; j++)
-            {   
-                
-                if ((i < j) && (nums[j] > min))
+            for (int j = i - 1; j >= 0; j--) 
+            {
+                if (nums[i] > nums[j]) 
                 {
-                    count++;
-                    min = nums[j];
+                    count[i] = Math.max(count[j] + 1, count[i]);
+                } 
+                else 
+                {
+                    count[i] = Math.max(count[i], 1);
                 }
-                
+
+                max = Math.max(count[i], max);
             }
-      
-            max = Math.max(max, count);
-            count = 1;
-            
         }
-        
+
         return max;
     }
-	
-	public static int lengthOfLIS2(int[] nums) {
-	     	
-		int[] temp = new int[nums.length];
-		int i = 1;
-		int max = 0;
-		
-		for(int a = 0; a < nums.length; a++)
-		{
-			temp[a] = 1;
-		}
-		
-		while (i < nums.length)
-		{
-			int j = 0;
-			while (j < i)
-			{
-				if (nums[j] < nums[i])
-				{
-					temp[i] = Math.max(temp[i], temp[j]+1);
-					max = Math.max(max, temp[i]);
-				}
-				j++;
-			}
-			i++;
-		}
-		return max;
-	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println(lengthOfLIS2(new int[] {10,9,2,5,3,7,101,18}));
-	}
 
+    public static void main(String[] args) {
+        System.out.println(lengthOfLIS(new int[] { 10, 9, 2, 5, 3, 7, 101, 18 }));
+    }
 }
